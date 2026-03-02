@@ -1,0 +1,61 @@
+version: 2
+
+sources:
+  - name: jaffle_raw
+    description: "Raw tables loaded via dbt seed into DuckDB."
+    database: jaffle
+    schema: main
+
+    tables:
+      - name: raw_customers
+        description: "Seeded customers raw table."
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+      
+      - name: raw_orders
+        description: "Seeded orders raw table."
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: user_id
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('jaffle_raw', 'raw_customers')
+                    field: id
+            
+      - name: raw_payments
+        description: "Seeded payments raw table."
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('jaffle_raw', 'raw_orders')
+                    field: id
+models:
+  - name: stg_orders
+    columns:
+      - name: order_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['returned', 'shipped', 'placed','return_pending','completed']
+  - name: stg_payments
+    columns:
+      - name: payment_method
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['coupon', 'gift_card', 'credit_card', 'bank_transfer']
