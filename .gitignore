@@ -2,4 +2,5 @@ target/
 dbt_packages/
 logs/
 .venv/
-warehouse/
+warehouse/*
+!warehouse/.gitkeep
