@@ -24,10 +24,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
-seeds:
-  dbt_analytics_engineering:
-    +schema: main
-
 # Tell dbt how to build models
 models:
   dbt_analytics_engineering:
