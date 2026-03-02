@@ -22,13 +22,20 @@ python -m venv .venv
 source .venv/bin/activate  
 
 # On Windows
-source .venv\Scripts\activate
+.venv\Scripts\Activate.ps1
 
 # Install dependencies
 pip install dbt-duckdb
 
+# Configure profiles
+
+# On Mac/Linux
+export DBT_PROFILES_DIR=profiles
+
+# On Windows
+$env:DBT_PROFILES_DIR="profiles"
+
 # Run dbt commands
-dbt seed
 dbt build
 ```
 
