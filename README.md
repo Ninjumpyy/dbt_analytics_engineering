@@ -80,12 +80,9 @@ The project uses dbt best practices:
 
 - Layered architecture (staging → intermediate → marts)
 - Reusable macros (`cents_to_dollars`, `get_payment_methods`)
-- Source freshness and relationship tests
-- Accepted value constraints on categorical fields
+- Relationship tests and accepted value constraints on categorical fields
 - Incremental model configuration for fact table
 - Automated CI validation with GitHub Actions
-
-All transformations are version-controlled and reproducible locally or in CI.
 
 ## How to run
 
