@@ -3,7 +3,6 @@ version: 2
 sources:
   - name: jaffle_raw
     description: "Raw tables loaded via dbt seed into DuckDB."
-    database: jaffle
     schema: main
 
     tables:

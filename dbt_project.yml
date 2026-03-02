@@ -1,8 +1,6 @@
 
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
 name: 'dbt_analytics_engineering'
+config-version: 2
 version: '1.0.0'
 
 # This setting configures which "profile" dbt uses for this project.
@@ -16,12 +14,19 @@ analysis-paths: ["analyses"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
+
+target-paths: "target"
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+  - "logs"
 
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
+seeds:
+  dbt_analytics_engineering:
+    +schema: main
 
 # Tell dbt how to build models
 models:
