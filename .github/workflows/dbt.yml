@@ -40,6 +40,13 @@ jobs:
         env:
           DBT_PROFILES_DIR: .github/dbt
         run: dbt deps
+      
+      - name: dbt seed
+        env:
+          DBT_PROFILES_DIR: .github/dbt
+        run: |
+          mkdir -p warehouse
+          dbt seed --full-refresh
 
       - name: dbt build
         env:
