@@ -124,6 +124,7 @@ $env:DBT_PROFILES_DIR="profiles"
 
 # Run dbt commands
 
+dbt seed
 dbt build
 
 ```
